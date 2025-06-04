@@ -74,7 +74,13 @@ const ShopByGender = () => {
   const [tab, setTab] = useState('women');
 
 return (
-  <Box sx={{ py: 8, backgroundColor: '#fefbf9' }}>
+ <Box
+  sx={{
+    py: 8,
+    backgroundColor: '#fefbf9',
+    mt: { xs: -8, sm: -5, md: 0 }, // negative margin top on mobile & tablet, zero on desktop
+  }}
+>
     <Container maxWidth={false} sx={{ width: '100%' }}> {/* 80% width as requested earlier */}
       {/* Heading */}
       <Typography variant="h4" align="center" gutterBottom>
@@ -82,23 +88,28 @@ return (
       </Typography>
 
       {/* Tabs */}
-      <Tabs
-        value={tab}
-        onChange={(e, newValue) => setTab(newValue)}
-        centered
-        textColor="secondary"
-        indicatorColor="secondary"
-        sx={{
-          mb: 4,
-          '& .MuiTab-root': { fontWeight: 500, fontSize: '1rem', textTransform: 'none' },
-          '& .Mui-selected': { color: '#a51263 !important' },
-          '& .MuiTabs-indicator': { backgroundColor: '#a51263' },
-        }}
-      >
-        <Tab label="Women's Jewellery" value="women" />
-        <Tab label="Men's Jewellery" value="men" />
-        <Tab label="Kids Jewellery" value="kids" />
-      </Tabs>
+   <Tabs
+  value={tab}
+  onChange={(e, newValue) => setTab(newValue)}
+  centered
+  textColor="secondary"
+  indicatorColor="secondary"
+  sx={{
+    mb: 4,
+    '& .MuiTab-root': {
+      fontWeight: 500,
+      fontSize: { xs: '0.75rem', sm: '0.85rem', md: '1rem' }, // smaller font on mobile
+      textTransform: 'none',
+    },
+    '& .Mui-selected': { color: '#a51263 !important' },
+    '& .MuiTabs-indicator': { backgroundColor: '#a51263' },
+  }}
+>
+  <Tab label="Women's Jewellery" value="women" />
+  <Tab label="Men's Jewellery" value="men" />
+  <Tab label="Kids Jewellery" value="kids" />
+</Tabs>
+
 
       {/* Product Grid */}
       <Grid container spacing={3} justifyContent="center">

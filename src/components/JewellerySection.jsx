@@ -1,57 +1,110 @@
 import React from 'react';
-import { Box, Grid, Typography, Container } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Typography,
+  Container,
+  useTheme,
+  useMediaQuery,
+  Button,
+} from '@mui/material';
+import { useCart } from '../context/CartContext';
+
 
 const jewelryItems = [
   {
     title: 'Sleek Necklaces',
     subtitle: 'Explore the collection',
     image: 'https://i.ebayimg.com/images/g/0LgAAOSwe3JniMwY/s-l400.jpg',
+      price: 49.99,
   },
   {
     title: 'Elegant Bangles',
     subtitle: 'Starting from ₹36,200*',
-    image: 'https://tribalornaments.com/cdn/shop/products/il_fullxfull.1984012697_l2tb.jpg?v=1616690030&width=1100',
+    image:
+      'https://tribalornaments.com/cdn/shop/products/il_fullxfull.1984012697_l2tb.jpg?v=1616690030&width=1100',
+      price: 29.99,
   },
   {
     title: 'Stunning Pendants',
     subtitle: 'Starting from ₹10,817*',
     image: 'https://m.media-amazon.com/images/I/81dzYTTMznS._AC_SY695_.jpg',
+    price: 19.99,
   },
   {
     title: 'Stylish Bracelets',
     subtitle: 'Starting from ₹36,500*',
-    image: 'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
+    image:
+      'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
+    price: 39.99,
   },
-   {
+  {
     title: 'Stunning Pendants',
     subtitle: 'Starting from ₹10,817*',
     image: 'https://m.media-amazon.com/images/I/81dzYTTMznS._AC_SY695_.jpg',
+    price: 19.99,
   },
   {
     title: 'Stylish Bracelets',
     subtitle: 'Starting from ₹36,500*',
-    image: 'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
+    image:
+      'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
+    price: 39.99,
+  },
+  {
+    title: 'Stunning Pendants',
+    subtitle: 'Starting from ₹10,817*',
+    image: 'https://m.media-amazon.com/images/I/81dzYTTMznS._AC_SY695_.jpg',
+    price: 19.99,
+  },
+  {
+    title: 'Stylish Bracelets',
+    subtitle: 'Starting from ₹36,500*',
+    image:
+      'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
+    price: 39.99,
   },
 ];
 
 const JewelryShowcase = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  
+  const { addToCart } = useCart();
+
   return (
     <Box sx={{ py: 6 }}>
       <Container maxWidth="lg">
         {/* Headings */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+          <Typography
+            variant={isMobile ? 'h5' : 'h4'}
+            sx={{ fontWeight: 'bold', mb: 1 }}
+          >
             Discover Our Jewelry Collection
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
-            Handpicked pieces designed to bring elegance and sparkle to every occasion.
+          <Typography
+            variant={isMobile ? 'body2' : 'subtitle1'}
+            color="text.secondary"
+          >
+            Handpicked pieces designed to bring elegance and sparkle to every
+            occasion.
           </Typography>
         </Box>
 
         {/* Grid */}
-        <Grid container spacing={4} justifyContent="space-between">
+        <Grid container spacing={4} justifyContent="center">
           {jewelryItems.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              key={index}
+              sx={{ display: 'flex', justifyContent: 'center' }}
+            >
               <Box
                 sx={{
                   borderRadius: 3,
@@ -62,6 +115,8 @@ const JewelryShowcase = () => {
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
+                  width: '100%',
+                  maxWidth: { xs: 340, sm: 400 },
                 }}
               >
                 <Box
@@ -70,18 +125,38 @@ const JewelryShowcase = () => {
                   alt={item.title}
                   sx={{
                     width: '100%',
-                    height: 300,
+                    height: { xs: 300, sm: 250, md: 250 },
                     objectFit: 'cover',
                   }}
                 />
-                <Box sx={{ p: 3 }}>
-                  <Typography variant="h6" gutterBottom>
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.subtitle}
-                  </Typography>
-                </Box>
+          <Box sx={{ p: 3 }}>
+  <Typography variant="h6" gutterBottom>
+    {item.title}
+  </Typography>
+  <Typography variant="body2" color="text.secondary" gutterBottom>
+    {item.subtitle}
+  </Typography>
+ <Button
+  onClick={() => addToCart(item)}
+  variant="outlined"
+  size="medium"
+  sx={{
+    mt: 1,
+    borderColor: '#001F54',
+    color: '#001F54',
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    '&:hover': {
+      backgroundColor: '#001F54',
+      color: '#fff',
+    },
+  }}
+>
+  Add to Cart
+</Button>
+
+</Box>
+
               </Box>
             </Grid>
           ))}

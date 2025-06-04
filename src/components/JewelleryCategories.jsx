@@ -20,14 +20,21 @@ function JewelleryCategories() {
 
   return (
     <Box textAlign="center" py={4} bgcolor="#f8f3eb">
-      <Typography variant="h5" color="#00205b" mb={5} >
+     <Typography
+      variant={isMobile ? 'h6' : 'h5'}
+      color="#00205b"
+      sx={{
+        mt: { xs: 8, sm: 14, md: 17 },
+        mb: 5,
+      }}
+    >
         What jewellery are you looking for?
       </Typography>
       <Grid
         container
         justifyContent="center"
         sx={{
-          backgroundColor: '#c89f5d',
+          backgroundColor: '#00205b',
           py: 2,
          
           borderRadius: '2px',
@@ -37,25 +44,29 @@ function JewelleryCategories() {
         {categories.map((category, idx) => {
           const isSelected = idx === selectedIndex;
           return (
-            <Grid
-              item
-              xs={6}
-              sm={4}
-              md={2}
-              key={idx}
-              onClick={() => setSelectedIndex(idx)}
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                backgroundColor: isSelected ? '#b98e50' : '#c89f5d',
-                transition: 'background-color 0.3s ease',
-                py: 3,
-                px: 8,
-                borderRight:
-                  idx !== categories.length - 1 ? '1px solid #e0c184' : 'none',
-              }}
-            >
+           <Grid
+  item
+  xs={6}
+  sm={4}
+  md={2}
+  key={idx}
+  onClick={() => setSelectedIndex(idx)}
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    backgroundColor: isSelected ? '#00205b' : '#00205b',
+    transition: 'background-color 0.3s ease',
+    py: 3,
+    px: 8,
+    borderRight: {
+      xs: 'none',   // no border on mobile
+      sm: 'none',   // no border on tablet
+      md: idx !== categories.length - 1 ? '1px solid #e0c184' : 'none',  // border on desktop only
+    },
+  }}
+>
+
               <Box display="flex" flexDirection="column" alignItems="center" px={1.5}>
                 <Box
                   component="img"

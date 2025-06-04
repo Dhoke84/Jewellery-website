@@ -3,9 +3,9 @@ import { Box, Fade } from '@mui/material';
 
 const images = [
   'https://www.srishanmugajewellery.com/wp-content/uploads/2023/07/05-_-Left.jpg',
-  'https://images.bhimagold.com/admin/collection/images/1729254637143-Women.jpg',
   'https://www.hellodiamonds.com/upload/blog/home_banner_104_05_15_2018.jpg',
   'https://t4.ftcdn.net/jpg/05/27/71/81/360_F_527718147_x7XDK929xZnZqjgh0oPYz7xK0EvtnlIF.jpg',
+   'https://images.bhimagold.com/admin/collection/images/1729254637143-Women.jpg',
 ];
 
 function AutoSlider() {
