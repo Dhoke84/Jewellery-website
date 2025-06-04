@@ -14,7 +14,7 @@ import { useCart } from '../context/CartContext';
 const jewelryItems = [
   {
     title: 'Sleek Necklaces',
-    subtitle: 'Explore the collection',
+    subtitle: 'Starting from ₹36,200*',
     image: 'https://i.ebayimg.com/images/g/0LgAAOSwe3JniMwY/s-l400.jpg',
       price: 49.99,
   },
@@ -38,32 +38,7 @@ const jewelryItems = [
       'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
     price: 39.99,
   },
-  {
-    title: 'Stunning Pendants',
-    subtitle: 'Starting from ₹10,817*',
-    image: 'https://m.media-amazon.com/images/I/81dzYTTMznS._AC_SY695_.jpg',
-    price: 19.99,
-  },
-  {
-    title: 'Stylish Bracelets',
-    subtitle: 'Starting from ₹36,500*',
-    image:
-      'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
-    price: 39.99,
-  },
-  {
-    title: 'Stunning Pendants',
-    subtitle: 'Starting from ₹10,817*',
-    image: 'https://m.media-amazon.com/images/I/81dzYTTMznS._AC_SY695_.jpg',
-    price: 19.99,
-  },
-  {
-    title: 'Stylish Bracelets',
-    subtitle: 'Starting from ₹36,500*',
-    image:
-      'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
-    price: 39.99,
-  },
+  
 ];
 
 const JewelryShowcase = () => {

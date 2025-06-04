@@ -130,7 +130,7 @@ return (
                 alt={item.title}
                 sx={{
                   borderRadius: 2,
-                  height: 300,
+                  height: 350,
                   objectFit: 'cover',
                   width: '100%',
                 }}

@@ -22,8 +22,7 @@ function HeaderSection() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const { cartItems } = useCart();
-const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const handleToggleSearch = () => setShowMobileSearch((prev) => !prev);
 
@@ -59,16 +58,16 @@ const navigate = useNavigate();
           }}
         />
 
-        {/* Mobile Search Toggle & Cart */}
+        {/* Mobile */}
         {isMobile ? (
           <Box display="flex" alignItems="center" gap={1}>
             <IconButton onClick={handleToggleSearch}>
               {showMobileSearch ? <CloseIcon /> : <SearchIcon />}
             </IconButton>
 
-            <IconButton>
+            <IconButton onClick={() => navigate('/cart')}>
               <Badge
-                badgeContent={0}
+                badgeContent={cartItems.length}
                 sx={{
                   '& .MuiBadge-badge': {
                     backgroundColor: '#00205b',
@@ -87,7 +86,7 @@ const navigate = useNavigate();
           </Box>
         ) : (
           <>
-            {/* Desktop Search Bar */}
+            {/* Desktop Search */}
             <Paper
               component="form"
               sx={{
@@ -127,54 +126,48 @@ const navigate = useNavigate();
               </Button>
             </Paper>
 
-            {/* Desktop Cart Button */}
-           <Button
-  variant="outlined"
-  onClick={() => navigate('/cart')}
-  sx={{
-    borderColor: '#00205b',
-    color: '#00205b',
-    borderRadius: '25px',
-    px: 3,
-    height: 48,
-    fontWeight: 'bold',
-    display: 'flex',
-    alignItems: 'center',
-    gap: 1,
-  }}
->
-  CART
-  <Badge
-    badgeContent={cartItems.length}
-    sx={{
-      '& .MuiBadge-badge': {
-        backgroundColor: '#00205b',
-        color: '#fff',
-        fontSize: 11,
-        height: 18,
-        minWidth: 18,
-        top: -5,
-        right: -10,
-      },
-    }}
-  >
-    <ShoppingCartIcon sx={{ color: '#00205b' }} />
-  </Badge>
-</Button>
-
+            {/* Desktop Cart */}
+            <Button
+              variant="outlined"
+              onClick={() => navigate('/cart')}
+              sx={{
+                borderColor: '#00205b',
+                color: '#00205b',
+                borderRadius: '25px',
+                px: 3,
+                height: 48,
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              CART
+              <Badge
+                badgeContent={cartItems.length}
+                sx={{
+                  '& .MuiBadge-badge': {
+                    backgroundColor: '#00205b',
+                    color: '#fff',
+                    fontSize: 11,
+                    height: 18,
+                    minWidth: 18,
+                    top: -5,
+                    right: -10,
+                  },
+                }}
+              >
+                <ShoppingCartIcon sx={{ color: '#00205b' }} />
+              </Badge>
+            </Button>
           </>
         )}
       </Toolbar>
 
-      {/* Collapsible Mobile Search Field */}
+      {/* Mobile Search Collapse */}
       {isMobile && (
         <Collapse in={showMobileSearch}>
-          <Box
-            sx={{
-              px: 2,
-              pb: 2,
-            }}
-          >
+          <Box sx={{ px: 2, pb: 2 }}>
             <Paper
               component="form"
               sx={{
