@@ -19,12 +19,13 @@ function JewelleryCategories() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Box textAlign="center" py={4} bgcolor="#f8f3eb">
+    <Box textAlign="center" py={4} bgcolor="#f8f3eb" sx={{
+        mt: { xs: 2}}} >
      <Typography
       variant={isMobile ? 'h6' : 'h5'}
       color="#00205b"
       sx={{
-        mt: { xs: 8, sm: 14, md: 17 },
+        mt: { xs: 1, sm: 2.5, md: 2 },
         mb: 5,
       }}
     >
@@ -35,7 +36,7 @@ function JewelleryCategories() {
         justifyContent="center"
         sx={{
           backgroundColor: '#00205b',
-          py: 2,
+          py: 8,
          
           borderRadius: '2px',
           overflow: 'hidden',

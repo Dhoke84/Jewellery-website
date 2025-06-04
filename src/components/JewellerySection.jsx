@@ -14,29 +14,29 @@ import { useCart } from '../context/CartContext';
 const jewelryItems = [
   {
     title: 'Sleek Necklaces',
-    subtitle: 'Starting from ₹36,200*',
+    subtitle: 'Starting from ₹3,200*',
     image: 'https://i.ebayimg.com/images/g/0LgAAOSwe3JniMwY/s-l400.jpg',
-      price: 49.99,
+      price: 3200,
   },
   {
     title: 'Elegant Bangles',
-    subtitle: 'Starting from ₹36,200*',
+    subtitle: 'Starting from ₹4,000*',
     image:
       'https://tribalornaments.com/cdn/shop/products/il_fullxfull.1984012697_l2tb.jpg?v=1616690030&width=1100',
-      price: 29.99,
+      price: 4000,
   },
   {
     title: 'Stunning Pendants',
     subtitle: 'Starting from ₹10,817*',
     image: 'https://m.media-amazon.com/images/I/81dzYTTMznS._AC_SY695_.jpg',
-    price: 19.99,
+    price: 10817,
   },
   {
     title: 'Stylish Bracelets',
-    subtitle: 'Starting from ₹36,500*',
+    subtitle: 'Starting from ₹6,500*',
     image:
       'https://marchjewellery.com/cdn/shop/files/MKBR170SSZN_m1_600x600_crop_center.jpg?v=1706168484',
-    price: 39.99,
+    price: 6500,
   },
   
 ];
@@ -49,7 +49,8 @@ const JewelryShowcase = () => {
   const { addToCart } = useCart();
 
   return (
-    <Box sx={{ py: 6 }}>
+    <Box sx={{ py: 6 ,   
+        mt: { xs: 8, sm: 14, md: 17 }}}>
       <Container maxWidth="lg">
         {/* Headings */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
@@ -57,7 +58,7 @@ const JewelryShowcase = () => {
             variant={isMobile ? 'h5' : 'h4'}
             sx={{ fontWeight: 'bold', mb: 1 }}
           >
-            Discover Our Jewelry Collection
+            Discover Our Jewellery Collection
           </Typography>
           <Typography
             variant={isMobile ? 'body2' : 'subtitle1'}

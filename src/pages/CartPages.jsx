@@ -87,7 +87,7 @@ const CartPage = () => {
                   </Box>
 
                   <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                    <Typography>${price.toFixed(2)}</Typography>
+                    <Typography>₹{price.toFixed(2)}</Typography>
                   </Box>
 
                   <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -95,7 +95,7 @@ const CartPage = () => {
                   </Box>
 
                   <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                    <Typography fontWeight="bold">${total.toFixed(2)}</Typography>
+                    <Typography fontWeight="bold">₹{total.toFixed(2)}</Typography>
                   </Box>
                 </ListItem>
               );
@@ -112,17 +112,17 @@ const CartPage = () => {
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
               <Typography>Subtotal</Typography>
-              <Typography>${subtotal.toFixed(2)}</Typography>
+              <Typography>₹{subtotal.toFixed(2)}</Typography>
             </Box>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
               <Typography>Extra Charges</Typography>
-              <Typography>${extraCharges.toFixed(2)}</Typography>
+              <Typography>₹{extraCharges.toFixed(2)}</Typography>
             </Box>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
               <Typography variant="h6">Total</Typography>
-              <Typography variant="h6">${finalTotal.toFixed(2)}</Typography>
+              <Typography variant="h6">₹{finalTotal.toFixed(2)}</Typography>
             </Box>
 
              {/* Button Group */}

@@ -16,6 +16,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  DialogActions,
+  IconButton as MuiIconButton
 } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import HomeIcon from '@mui/icons-material/Home';
@@ -23,6 +29,7 @@ import StoreIcon from '@mui/icons-material/Store';
 import LoginIcon from '@mui/icons-material/Login';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Navbar() {
   const theme = useTheme();
@@ -31,11 +38,26 @@ function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [authMode, setAuthMode] = useState('signin'); // 'signin' or 'login'
+
   const handleOpen = (e) => setAnchorEl(e.currentTarget);
   const handleClose = () => setAnchorEl(null);
-
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = (open) => () => setDrawerOpen(open);
+
+  const handleAuthOpen = () => {
+    setAuthDialogOpen(true);
+    setAuthMode('signin');
+  };
+
+  const handleAuthClose = () => {
+    setAuthDialogOpen(false);
+  };
+
+  const switchAuthMode = () => {
+    setAuthMode(authMode === 'signin' ? 'login' : 'signin');
+  };
 
   const updatedAt = new Date().toLocaleString('en-GB', {
     day: '2-digit',
@@ -74,7 +96,6 @@ function Navbar() {
             py: 1,
           }}
         >
-          {/* Left Side: Contact and (non-mobile) Rate Dropdown */}
           <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
             <Box display="flex" alignItems="center">
               <PhoneIcon sx={{ mr: 1, color: 'white' }} />
@@ -86,24 +107,23 @@ function Navbar() {
             {!isMobile && (
               <>
                 <Button
-  onClick={handleOpen}
-  sx={{
-    backgroundColor: '#00205b',
-    color: '#fff',
-    px: 2,
-    py: 0.5,
-    fontSize: 14,
-    textTransform: 'none',
-    '&:hover': {
-      backgroundColor: '#fff',
-      color: '#00205b',
-    },
-  }}
-  endIcon={<ArrowDropDownIcon />}
->
-  Rate
-</Button>
-
+                  onClick={handleOpen}
+                  sx={{
+                    backgroundColor: '#00205b',
+                    color: '#fff',
+                    px: 2,
+                    py: 0.5,
+                    fontSize: 14,
+                    textTransform: 'none',
+                    '&:hover': {
+                      backgroundColor: '#fff',
+                      color: '#00205b',
+                    },
+                  }}
+                  endIcon={<ArrowDropDownIcon />}
+                >
+                  Rate
+                </Button>
 
                 <Menu
                   anchorEl={anchorEl}
@@ -158,7 +178,6 @@ function Navbar() {
             )}
           </Box>
 
-          {/* Right Side: Navigation or Drawer */}
           {isMobile ? (
             <>
               <IconButton onClick={toggleDrawer(true)} sx={{ color: 'white' }}>
@@ -180,7 +199,7 @@ function Navbar() {
                       <ListItemIcon><StoreIcon /></ListItemIcon>
                       <ListItemText primary="Shop" />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={handleAuthOpen}>
                       <ListItemIcon><LoginIcon /></ListItemIcon>
                       <ListItemText primary="Sign In" />
                     </ListItem>
@@ -190,22 +209,13 @@ function Navbar() {
             </>
           ) : (
             <Box display="flex" alignItems="center" gap={1} flexWrap="wrap" mt={{ xs: 1, sm: 0 }}>
-              <Button
-                startIcon={<HomeIcon sx={{ color: 'white' }} />}
-                sx={{ fontSize: 14, color: 'white' }}
-              >
+              <Button startIcon={<HomeIcon sx={{ color: 'white' }} />} sx={{ fontSize: 14, color: 'white' }}>
                 Corporate Website
               </Button>
-              <Button
-                startIcon={<StoreIcon sx={{ color: 'white' }} />}
-                sx={{ fontSize: 14, color: 'white' }}
-              >
+              <Button startIcon={<StoreIcon sx={{ color: 'white' }} />} sx={{ fontSize: 14, color: 'white' }}>
                 Shop
               </Button>
-              <Button
-                startIcon={<LoginIcon sx={{ color: 'white' }} />}
-                sx={{ fontSize: 14, color: 'white' }}
-              >
+              <Button onClick={handleAuthOpen} startIcon={<LoginIcon sx={{ color: 'white' }} />} sx={{ fontSize: 14, color: 'white' }}>
                 Sign In
               </Button>
             </Box>
@@ -213,7 +223,114 @@ function Navbar() {
         </Toolbar>
       </AppBar>
 
-      {/* Spacer to prevent content from hiding under fixed navbar */}
+      {/* Auth Modal */}
+      <Dialog
+  open={authDialogOpen}
+  onClose={handleAuthClose}
+  fullWidth
+  maxWidth="xs"
+  PaperProps={{
+    sx: {
+      borderRadius: 4,
+      px: 3,
+      pb: 4,
+      pt: 5,
+      position: 'relative',
+      backdropFilter: 'blur(10px)',
+      background: 'rgba(255, 255, 255, 0.85)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+    },
+  }}
+>
+  {/* Close Icon */}
+  <IconButton
+    onClick={handleAuthClose}
+    sx={{
+      position: 'absolute',
+      top: 10,
+      right: 10,
+      color: '#555',
+    }}
+  >
+    <CloseIcon />
+  </IconButton>
+
+  {/* Title */}
+  <DialogTitle
+    sx={{
+      textAlign: 'center',
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#00205b',
+      mb: 2,
+    }}
+  >
+    {authMode === 'signin' ? 'Join the Journey ✨' : 'Welcome Back 👋'}
+  </DialogTitle>
+
+  {/* Form Fields */}
+  <DialogContent dividers sx={{ border: 'none' }}>
+    <Box component="form" display="flex" flexDirection="column" gap={2}>
+      {authMode === 'signin' && (
+        <>
+          <TextField label="First Name" fullWidth variant="outlined" />
+          <TextField label="Last Name" fullWidth variant="outlined" />
+        </>
+      )}
+      <TextField label="Email Address" fullWidth variant="outlined" />
+      <TextField label="Password" type="password" fullWidth variant="outlined" />
+    </Box>
+  </DialogContent>
+
+  {/* Action Buttons */}
+  <DialogActions
+    sx={{
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 2,
+      pt: 3,
+    }}
+  >
+    <Button
+      variant="contained"
+      onClick={handleAuthClose}
+      sx={{
+        width: '100%',
+        backgroundColor: '#00205b',
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+        borderRadius: 3,
+        py: 1.2,
+        '&:hover': {
+          backgroundColor: '#001f4d',
+        },
+      }}
+    >
+      {authMode === 'signin' ? 'Sign Up' : 'Log In'}
+    </Button>
+
+    <Typography
+      onClick={switchAuthMode}
+      sx={{
+        fontSize: 14,
+        color: '#666',
+        textDecoration: 'underline',
+        cursor: 'pointer',
+        '&:hover': {
+          color: '#00205b',
+        },
+      }}
+    >
+      {authMode === 'signin'
+        ? 'Already have an account? Log In'
+        : 'New here? Create an account'}
+    </Typography>
+  </DialogActions>
+</Dialog>
+
+
+      {/* Spacer */}
       <Toolbar sx={{ mb: 2 }} />
     </>
   );

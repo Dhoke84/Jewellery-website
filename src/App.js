@@ -29,9 +29,9 @@ function App() {
           } />
           <Route path="*" element={
             <Container maxWidth={false} disableGutters>
-              <JewelleryCategories />
+               <JewelrySection />
               <AutoSlider />
-              <JewelrySection />
+              <JewelleryCategories />
               <ShopByGender />
               <GiftsAndMore />
               <Footer />
