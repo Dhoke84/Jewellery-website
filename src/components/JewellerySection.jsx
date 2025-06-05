@@ -88,7 +88,8 @@ const JewelryShowcase = () => {
   };
 
   return (
-    <Box sx={{ py: 6, mt: { xs: 8, sm: 14, md: 17 } }}>
+<Box sx={{ py: 6, mb: 2,  bgcolor: '#f8f3eb', mt: { xs: 6, sm: 11, md: 15 } }}>
+
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography
