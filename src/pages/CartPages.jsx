@@ -75,7 +75,7 @@ const CartPage = () => {
                   <Box sx={{ flex: 1.5, display: 'flex', alignItems: 'center', gap: 2 }}>
                     <Box
                       component="img"
-                      src={item.image}
+                     src={item.images ? item.images[0] : item.image}
                       alt={item.title}
                       width={80}
                       height={80}
@@ -86,8 +86,8 @@ const CartPage = () => {
                     </Box>
                   </Box>
 
-                  <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                    <Typography>₹{price.toFixed(2)}</Typography>
+                  <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' , }}>
+                    <Typography>₹{price}</Typography>
                   </Box>
 
                   <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -95,7 +95,7 @@ const CartPage = () => {
                   </Box>
 
                   <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                    <Typography fontWeight="bold">₹{total.toFixed(2)}</Typography>
+                    <Typography fontWeight="bold">₹{total}</Typography>
                   </Box>
                 </ListItem>
               );
